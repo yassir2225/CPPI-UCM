@@ -49,7 +49,7 @@ def sidebar_data_selection():
 
     folder = st.sidebar.text_input(
         "Dossier des fichiers Excel",
-        value=DATA_FOLDER_DEFAULT,
+        value=DATA_DIR,
         help="Dossier contenant MASI_HISTO.xlsx, MBI_*_HISTO.xlsx, ...",
     )
 
