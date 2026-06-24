@@ -74,7 +74,7 @@ w_max = c2.number_input("Poids max", value=1.5, min_value=0.0, max_value=10.0, s
 
 st.sidebar.subheader("Numérique")
 n_grid = int(st.sidebar.number_input("Taille de grille N",
-            min_value=100, max_value=6000, value=600, step=100))
+            min_value=100, max_value=6000, value=600, step=50))
 if n_grid > 1500:
     st.sidebar.warning("Calcul en O(N²) : au-delà de 1500, le pricing ralentit.")
 n_paths = st.sidebar.select_slider("Simulations Monte Carlo",
