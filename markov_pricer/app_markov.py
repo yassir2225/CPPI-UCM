@@ -57,7 +57,9 @@ else:
             st.sidebar.error(f"Lecture impossible : {e}")
 
 st.sidebar.subheader("Modèle")
-rate = st.sidebar.slider("Taux sans risque r", 0.0, 0.20, 0.03, 0.005)
+rate = st.sidebar.number_input(
+    "Taux sans risque r", min_value=0.0, max_value=0.20,
+    value=0.03, step=0.0005, format="%.4f")
 maturity = st.sidebar.slider("Maturité T (années)", 0.5, 15.0, 5.0, 0.5)
 n_rebal = st.sidebar.slider("Nombre de rebalancements", 4, 500, 60, 1)
 spot = st.sidebar.number_input("Spot de l'actif risqué", value=100.0, min_value=0.01)
@@ -71,7 +73,10 @@ w_min = c1.number_input("Poids min", value=0.0, min_value=0.0, max_value=10.0, s
 w_max = c2.number_input("Poids max", value=1.5, min_value=0.0, max_value=10.0, step=0.1)
 
 st.sidebar.subheader("Numérique")
-n_grid = st.sidebar.select_slider("Taille de grille N", options=[150, 300, 600, 1200, 2400], value=600)
+n_grid = int(st.sidebar.number_input("Taille de grille N",
+            min_value=100, max_value=6000, value=600, step=100))
+if n_grid > 1500:
+    st.sidebar.warning("Calcul en O(N²) : au-delà de 1500, le pricing ralentit.")
 n_paths = st.sidebar.select_slider("Simulations Monte Carlo",
                                    options=[50_000, 100_000, 200_000, 500_000, 1_000_000], value=200_000)
 
